@@ -2,7 +2,6 @@ using Departament.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,12 +27,7 @@ namespace Departament
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddDistributedMemoryCache();
-            services.AddSession();
-            services.AddAuthentication(IISDefaults.AuthenticationScheme);
-
-
+            
             services.AddControllersWithViews();
         }
 
@@ -53,8 +47,6 @@ namespace Departament
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();

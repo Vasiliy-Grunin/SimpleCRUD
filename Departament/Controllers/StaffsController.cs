@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Departament.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class StaffsController : Controller
     {
         private readonly ApplicationDbContext _context;

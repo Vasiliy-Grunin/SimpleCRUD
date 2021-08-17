@@ -30,10 +30,11 @@ namespace Departament.Controllers
             {
                 User user = new() { Email = model.Login, Login = model.Login };
                 var result = await _userManager.CreateAsync(user, model.Password);
+                var roly = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, false);
-                    return RedirectToAction("Index", "Staffs");
+                    return RedirectToAction("Index", "Staffs", "admin");
                 }
                 else
                 {
@@ -68,7 +69,7 @@ namespace Departament.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Staffs");
+                        return RedirectToAction("Index", "Staffs", "admin");
                     }
                 }
                 else
@@ -84,7 +85,7 @@ namespace Departament.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Staffs");
+            return RedirectToAction("Index", "Staffs", "admin");
         }
     }
 }
